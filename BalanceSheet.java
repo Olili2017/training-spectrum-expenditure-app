@@ -7,7 +7,7 @@ Class BalanceSheet{
 
   }
 
-  public static void display Items(){
+  public static void display Items(number, invoice){
 
   }
 
