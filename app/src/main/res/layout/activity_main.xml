@@ -8,36 +8,80 @@
     tools:context=".MainActivity"
     android:padding="12dp">
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp">
-        <Button
+        <LinearLayout
             android:id="@+id/addExpenditure"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="0dp"
             android:layout_marginEnd="8dp"
             android:layout_height="123dp"
             android:background="@drawable/shape"
             android:padding="10dp"
             android:shadowColor="@color/colorPrimary"
-            android:text="Add Expenditure"
-            android:textColor="@color/lightgray"
-            android:textSize="16dp" />
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="Add"
+                android:textColor="@color/lightgray"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expenditure"
+                android:textAllCaps="true"
+                android:textColor="@color/lightgray"
+                android:textSize="16sp"/>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/AddIncome"
+
+        <LinearLayout
+            android:id="@+id/addIncome"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="125dp"
+            android:layout_marginStart="0dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_height="123dp"
             android:background="@drawable/shape"
             android:padding="10dp"
             android:shadowColor="@color/colorPrimary"
-            android:text="Add Income"
-            android:textColor="@color/lightgray"
-            android:textSize="16dp" />
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="Add"
+                android:textColor="@color/lightgray"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Income"
+                android:textAllCaps="true"
+                android:textColor="@color/lightgray"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+<!--        <Button-->
+<!--            android:id="@+id/AddIncome"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="123dp"-->
+<!--            android:layout_marginEnd="0dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:background="@drawable/shape"-->
+<!--            android:padding="10dp"-->
+<!--            android:shadowColor="@color/colorPrimary"-->
+<!--            android:text="Add Income"-->
+<!--            android:textColor="@color/lightgray"-->
+<!--            android:textSize="16sp" />-->
 
     </LinearLayout>
     <Button
