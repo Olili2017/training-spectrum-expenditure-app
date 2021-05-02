@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddExpenseActivity extends AppCompatActivity {
-    private static final String URL = "http://192.168.1.102/android/income.php";
+    private static final String URL = "http://192.168.1.102/android/expense.php";
     private CalendarView calendarView;
     private EditText name, amount;
     private String currentDate;
@@ -59,6 +59,7 @@ public class AddExpenseActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.setMessage("Loading...");
                 progressDialog.show();
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                     @Override

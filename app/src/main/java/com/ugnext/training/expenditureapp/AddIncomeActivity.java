@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class AddIncomeActivity extends AppCompatActivity {
 
-    private static final String URL = "http://192.168.1.102/android/expense.php";
+    private static final String URL = "http://192.168.1.102/android/income.php";
     private CalendarView calendarView;
     private EditText name, amount;
     private String currentDate;
@@ -65,6 +65,7 @@ public class AddIncomeActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.setMessage("Loading...");
                 progressDialog.show();
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                     @Override
@@ -74,7 +75,7 @@ public class AddIncomeActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(AddIncomeActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             if (jsonObject.getBoolean("status")){
-                                amount.setText(0);
+                                amount.setText("");
                                 name.setText("");
                                 long todayDate = Calendar.getInstance().getTimeInMillis();
                                 calendarView.setDate(todayDate, true, true);
