@@ -27,7 +27,7 @@ import java.util.Iterator;
 
 public class TransactionsActivity extends AppCompatActivity {
     private static final String URL = "https://system.kessd.org/api/v1/fetch.php";
-    private ArrayList<TransactionsClass> transactionsClassArrayList;
+    private ArrayList<TransactionsClass> transactionsClassArrayList = new ArrayList<>();
     private TransactionsAdapter transactionsAdapter;
     private ProgressDialog progressDialog;
     private RecyclerView recyclerView;
@@ -38,12 +38,11 @@ public class TransactionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_transactions);
 
         progressDialog = new ProgressDialog(this);
-//
+
         progressDialog.setMessage("Fetching Data ...");
         progressDialog.show();
 
         recyclerView = findViewById(R.id.recyclerview);
-        transactionsClassArrayList = new ArrayList<>();
         transactionsAdapter = new TransactionsAdapter();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
@@ -57,22 +56,29 @@ public class TransactionsActivity extends AppCompatActivity {
                     for (int i = 0;  i< incomeArray.length(); i++){
                         JSONObject fields = incomeArray.getJSONObject(i);
 
-                        transactionsClassArrayList.add(new TransactionsClass(
+                        TransactionsClass transaction = new TransactionsClass(
                                 fields.getString("amount"),
                                 fields.getString("name"),
-                                fields.getString("date")));
+                                fields.getString("date"),
+                                "Income");
+                        transactionsClassArrayList.add(transaction);
                     }
 
-                    JSONArray expenseArray = jsonObject.getJSONArray("income");
+                    JSONArray expenseArray = jsonObject.getJSONArray("expense");
+//                    Toast.makeText(TransactionsActivity.this, expenseArray.length(), Toast.LENGTH_SHORT).show();
 
                     for (int i = 0;  i< expenseArray.length(); i++){
                         JSONObject fields = expenseArray.getJSONObject(i);
 
-                        transactionsClassArrayList.add(new TransactionsClass(
+                        TransactionsClass transaction = new TransactionsClass(
                                 fields.getString("amount"),
                                 fields.getString("name"),
-                                fields.getString("date")));
+                                fields.getString("date"),
+                                "Expense");
+                        transactionsClassArrayList.add(transaction);
                     }
+
+//                    Toast.makeText(TransactionsActivity.this, transactionsClassArrayList.toString(), Toast.LENGTH_SHORT).show();
 
                     transactionsAdapter.setTransactions(transactionsClassArrayList);
                     recyclerView.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this,RecyclerView.VERTICAL, false));
@@ -92,7 +98,6 @@ public class TransactionsActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
-        Log.d("Transactions",transactionsClassArrayList.toString());
     }
 
 }
