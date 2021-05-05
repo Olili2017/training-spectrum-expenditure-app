@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class AddIncomeActivity extends AppCompatActivity {
 
-    private static final String URL = "http://192.168.1.102/android/income.php";
+    private static final String URL = "https://system.kessd.org/api/v1/income.php";
     private CalendarView calendarView;
     private EditText name, amount;
     private String currentDate;
@@ -46,6 +46,10 @@ public class AddIncomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_income);
 
         calendarView = (CalendarView) findViewById(R.id.calendar);
+
+        long todayDate = Calendar.getInstance().getTimeInMillis();
+        calendarView.setDate(todayDate, true, true);
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
