@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect('', "", "", "");
+include 'conn.php';
 if ($_SERVER["REQUEST_METHOD"] === 'GET')
 {
     
