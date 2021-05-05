@@ -4,14 +4,16 @@ public class TransactionsClass {
     private String amount;
     private String reason;
     private String transactionDate;
+    private String type;
 
     public TransactionsClass() {
     }
 
-    public TransactionsClass(String amount, String reason, String transactionDate) {
+    public TransactionsClass(String amount, String reason, String transactionDate, String type) {
         this.amount = amount;
         this.reason = reason;
         this.transactionDate = transactionDate;
+        this.type = type;
     }
 
     public String getAmount() {
@@ -36,5 +38,9 @@ public class TransactionsClass {
 
     public void setTransactionDate(String transactionDate) {
         this.transactionDate = transactionDate;
+    }
+
+    public String getType() {
+        return type;
     }
 }

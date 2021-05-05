@@ -30,6 +30,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         holder.reason.setText(transactions.get(position).getReason());
         holder.amount.setText(transactions.get(position).getAmount());
         holder.transactionDate.setText(transactions.get(position).getTransactionDate());
+        holder.type.setText(transactions.get(position).getType());
     }
 
     @Override
