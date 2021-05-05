@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'GET')
         $fetchData2[] = $rows;
     }
 
-    $data["expense"] = $fetchData;
+    $data["expense"] = $fetchData2;
     $data["status"] = true;
 
 }
