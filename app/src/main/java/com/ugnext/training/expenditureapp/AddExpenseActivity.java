@@ -72,6 +72,12 @@ public class AddExpenseActivity extends AppCompatActivity {
                         try {
                             progressDialog.dismiss();
                             JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getBoolean("status")){
+                                amount.setText("");
+                                name.setText("");
+                                long todayDate = Calendar.getInstance().getTimeInMillis();
+                                calendarView.setDate(todayDate, true, true);
+                            }
                             Toast.makeText(AddExpenseActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
