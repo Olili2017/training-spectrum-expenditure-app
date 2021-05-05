@@ -13,8 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] === 'GET')
 
     $query = "SELECT * FROM expense ORDER BY id DESC LIMIT 50";
     $result = $conn->query($query);
+    $fetchData2 = array();
     while($rows = $result->fetch_assoc()){
-        $fetchData[] = $rows;
+        $fetchData2[] = $rows;
     }
 
     $data["expense"] = $fetchData;
@@ -28,4 +29,3 @@ else
 }
 
 echo json_encode($data);
-
