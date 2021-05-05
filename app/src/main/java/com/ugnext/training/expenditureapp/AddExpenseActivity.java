@@ -23,11 +23,12 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AddExpenseActivity extends AppCompatActivity {
-    private static final String URL = "http://192.168.1.102/android/expense.php";
+    private static final String URL = "https://system.kessd.org/api/v1/expense.php";
     private CalendarView calendarView;
     private EditText name, amount;
     private String currentDate;
@@ -40,6 +41,10 @@ public class AddExpenseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_expense);
 
         calendarView = (CalendarView) findViewById(R.id.calendar);
+
+        long todayDate = Calendar.getInstance().getTimeInMillis();
+        calendarView.setDate(todayDate, true, true);
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
