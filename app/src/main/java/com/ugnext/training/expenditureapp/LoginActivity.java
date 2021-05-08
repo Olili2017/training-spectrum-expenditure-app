@@ -39,6 +39,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (SharedPrefUser.getInstance(this).isLoggedIn()){
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            return;
+        }
+
         login = findViewById(R.id.loginBtn);
         register = findViewById(R.id.register);
         forgot = findViewById(R.id.forgot);
@@ -65,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "An error Occured", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "An error Occured", Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -103,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (validation){
 
-                    progressDialog.setMessage("Registering");
+                    progressDialog.setMessage("Logging In");
                     progressDialog.show();
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.LOGIN_USER, new Response.Listener<String>() {
@@ -114,10 +120,14 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(response);
                                 Toast.makeText(LoginActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                                 if (jsonObject.getBoolean("status")){
+                                    JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                                    SharedPrefUser.getInstance(getApplicationContext()).userLogin(
+                                            jsonObject1.getInt("id"),
+                                            jsonObject1.getString("email")
+                                    );
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
-                                    Toast.makeText(LoginActivity.this, jsonObject.getJSONObject("data").toString(), Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

@@ -38,6 +38,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        if (SharedPrefUser.getInstance(this).isLoggedIn()){
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            return;
+        }
+
         register = findViewById(R.id.registerBtn);
         login = findViewById(R.id.login);
         email = findViewById(R.id.email);
