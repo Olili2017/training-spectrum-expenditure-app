@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class TransactionsActivity extends AppCompatActivity {
-    private static final String URL = "https://system.kessd.org/api/v1/fetch.php";
+
     private ArrayList<TransactionsClass> transactionsClassArrayList = new ArrayList<>();
     private TransactionsAdapter transactionsAdapter;
     private ProgressDialog progressDialog;
@@ -45,7 +45,7 @@ public class TransactionsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         transactionsAdapter = new TransactionsAdapter();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.FETCH_TRANSACTIONS, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
