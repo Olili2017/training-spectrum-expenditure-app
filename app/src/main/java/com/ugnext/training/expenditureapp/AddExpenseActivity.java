@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddExpenseActivity extends AppCompatActivity {
-    private static final String URL = "https://system.kessd.org/api/v1/expense.php";
+
     private CalendarView calendarView;
     private EditText name, amount;
     private String currentDate;
@@ -66,7 +66,7 @@ public class AddExpenseActivity extends AppCompatActivity {
             public void onClick(View v) {
                 progressDialog.setMessage("Loading...");
                 progressDialog.show();
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.ADD_EXPENSES, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -87,6 +87,7 @@ public class AddExpenseActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
+                        Toast.makeText(AddExpenseActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
                     }
                 }) {
@@ -101,8 +102,7 @@ public class AddExpenseActivity extends AppCompatActivity {
                     }
                 };
 
-                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                requestQueue.add(stringRequest);
+                RequestHandler.getInstance(AddExpenseActivity.this).addToRequestQueue(stringRequest);
             }
 
         });
