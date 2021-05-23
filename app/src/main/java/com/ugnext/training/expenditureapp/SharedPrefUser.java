@@ -3,10 +3,6 @@ package com.ugnext.training.expenditureapp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
 public class SharedPrefUser {
     private static SharedPrefUser instance;
     private static Context ctx;
@@ -54,5 +50,14 @@ public class SharedPrefUser {
         return true;
     }
 
+    public String getKeyUserEmail() {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_EMAIL, null);
+    }
+
+    public int getKeyUserId() {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(KEY_USER_ID, 0);
+    }
 }
 

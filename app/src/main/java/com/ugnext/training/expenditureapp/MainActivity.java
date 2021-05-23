@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 SharedPrefUser.getInstance(getApplicationContext()).logout();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 return true;
+            case R.id.profile:
+                startActivity(new Intent(getApplicationContext(), Profile.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
